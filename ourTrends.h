@@ -14,5 +14,7 @@ public:
 protected:
 	bool isSorted;
 	std::vector<std::pair<std::string, int> > wordCountVector;
+	HashTable<std::string, int> hash;
+	LinkedList<int> frequencyList;
 
 };

@@ -2,7 +2,7 @@
 //Author: Bo Brinkman
 //Date: 2013/07/24
 #include "USet.h"
-
+#include "hashPrimes.h"
 /*
  * Note: Just above your template declaration when you use this class, you
  * must define method called "hash" that takes a Key as input, and returns
@@ -81,92 +81,122 @@ private:
 //You will need this so you can make a string to throw in
 // remove
 #include <string>
-
 template <class Key, class T>
-HashTable<Key,T>::HashTable(){
-	backingArraySize = hashPrimes[location];
+HashTable<Key, T>::HashTable(){
+	backingArraySize = hashPrimes[0];
 	backingArray = new HashRecord[backingArraySize];
-	numRemoved = 0;
 	numItems = 0;
+	numRemoved = 0;
+	
 }
 
 template <class Key, class T>
-HashTable<Key,T>::~HashTable() {
-	delete backingArray;
+HashTable<Key, T>::~HashTable() {
+	delete[] backingArray;
+	backingArray = NULL;
+	
 }
 
 template <class Key, class T>
-unsigned long HashTable<Key,T>::calcIndex(Key k){
-  //probably right
-	//calc starting index and then linear probe to find value, if no value is found, return where it ought to be.
-	return hash(k)%backingArraySize;
-  
+unsigned long HashTable<Key, T>::calcIndex(Key k){
+	unsigned long i = hash(k) % backingArraySize;
+	for (i; true; i++){
+		if (backingArray[i].isNull || backingArray[i].k == k){
+			return (i);
+			
+		}
+		
+	}
+	return numItems; //for if it fails...
+	
 }
 
 template <class Key, class T>
 void HashTable<Key, T>::add(Key k, T x){
-	numItems++;
-	if ((numItems + numRemoved) >= backingArraySize/2)
-	{
-	grow();
+	if ((numItems + numRemoved) >= backingArraySize / 2){
+		grow();
+		
 	}
-	if (backingArray[x].isNull|| !(backingArray[x].isDel))
-	{
-		backingArray[x].isNull = false;
-		backingArray[x].isDel = false;
-		backingArray[x].k = k;
-		backingArray[x].x = x; 
-	}
-}
-
-template <class Key, class T>
-void HashTable<Key,T>::remove(Key k){
-	backingArray[(find(k))].isDel = true;
-	numRemoved++; 
-	numItems--;
-}
-
-template <class Key, class T>
-T HashTable<Key,T>::find(Key k){
-  	long i = 0;
-	while (backingArray[i].isNull){
-		if(!backingArray[i].isDel && backingArray[i].k == k) 
-			return backingArray[i].x;
-		i=(i==backingArraySize-1)?0:i+1;
-	}
-  return backingArray[i].x; 
-}
-
-template <class Key, class T>
-bool HashTable<Key,T>::keyExists(Key k){
-	for (unsigned long i = 0; i < backingArraySize; i++){
-		if (backingArray[i].k == k)
-			return true;
+	unsigned long i = hash(k);
+	for (i; true; i++){
+		if (backingArray[i % backingArraySize].isNull || backingArray[i % backingArraySize].k == k || backingArray[i % backingArraySize].isDel){
+			i = (i % backingArraySize);
+			break;
+			
 		}
-  return false;
+		
+	}
+	backingArray[i].k = k;
+	backingArray[i].x = x;
+	backingArray[i].isNull = false;
+	numItems++;
+	
 }
 
 template <class Key, class T>
-unsigned long HashTable<Key,T>::size(){
+void HashTable<Key, T>::remove(Key k){
+	if (keyExists(k)){
+		backingArray[calcIndex(k)].isDel = true;
+		numRemoved++;
+		numItems--;
+		
+	}
+	
+}
+
+template <class Key, class T>
+T HashTable<Key, T>::find(Key k){
+	if (keyExists(k)){
+		return (backingArray[calcIndex(k)].x);
+		
+	}
+	else{
+		throw std::string("Error: Cannot find item in hash table with that key");
+		
+	}
+	
+}
+
+template <class Key, class T>
+bool HashTable<Key, T>::keyExists(Key k){
+	unsigned long i = calcIndex(k);
+	if (backingArray[i].k == k && !backingArray[i].isDel){
+		return true;
+		
+	}
+	return false;
+	
+}
+
+template <class Key, class T>
+unsigned long HashTable<Key, T>::size(){
 	return numItems;
+	
 }
 
 template <class Key, class T>
 void HashTable<Key, T>::grow(){
-	//TODO
-	location++;
-	HashTable<std::string, int> temp;
-	for (unsigned int k = 0; k < backingArraySize; k++) {
-		if (!backingArray[k].isNull || !backingArray[k].isDel) {
-//why cant I store old values to the new table?
-//			temp[hash(k)] = hash(k);
+	HashRecord* oldArray = backingArray;
+	int oldArraySize = backingArraySize;
+	for (int i = 0; true; i++){
+		if (hashPrimes[i] == backingArraySize){
+			backingArray = new HashRecord[hashPrimes[i + 1]];
+			backingArraySize = hashPrimes[i + 1];
+			break;
+			
 		}
+		
 	}
-	for (unsigned int i = 0; i < backingArraySize; i++)
-	{
-//why cant I assign old values to grown table?
-//		backingArray->k = temp[i];
+	
+		numItems = 0;
+	numRemoved = 0;
+	for (int i = 0; i < oldArraySize; i++){
+		if (!oldArray[i].isNull && !oldArray[i].isDel){
+			add(oldArray[i].k, oldArray[i].x);
+			
+		}
+		
 	}
-	backingArraySize = hashPrimes[location];
-
+	delete[] oldArray;
+	
 }
