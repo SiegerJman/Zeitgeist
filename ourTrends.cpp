@@ -1,12 +1,11 @@
 #include "ourTrends.h"
 #include <algorithm>
 
-//This function is defined in naiveTrends.cpp
+//This function is defined lower
 bool compareFunc(std::pair<std::string, unsigned int> i, std::pair<std::string, unsigned int> j);
-
 void ourTrends::increaseCount(std::string s, unsigned int amount){
 	unsigned int startSize = numEntries();
-	ourTrends::increaseCount(s, amount);
+	//ourTrends::increaseCount(s, amount);
 	if (startSize != numEntries()){
 		isSorted = false;
 	}

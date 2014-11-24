@@ -1,5 +1,8 @@
 #include <vector>
 #include <string>
+#include "Trends.h"
+#include "linkedList.h"
+#include "hashTable.h"
 
 class ourTrends{
 public:
@@ -11,4 +14,5 @@ public:
 protected:
 	bool isSorted;
 	std::vector<std::pair<std::string, int> > wordCountVector;
+
 };
