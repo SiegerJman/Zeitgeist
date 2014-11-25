@@ -83,7 +83,7 @@ private:
 #include <string>
 template <class Key, class T>
 HashTable<Key, T>::HashTable(){
-	backingArraySize = hashPrimes[0];
+	backingArraySize = 805306457;
 	backingArray = new HashRecord[backingArraySize];
 	numItems = 0;
 	numRemoved = 0;
@@ -96,6 +96,16 @@ HashTable<Key, T>::~HashTable() {
 	backingArray = NULL;
 	
 }
+
+unsigned long hash(std::string k){
+	unsigned long m = 805306457;
+	unsigned long ret = 0;
+	for (unsigned int i = 0; i < k.size(); i++){
+		ret = (256 * ret + k[i]) % m;
+	}
+	return ret;
+}
+
 
 template <class Key, class T>
 unsigned long HashTable<Key, T>::calcIndex(Key k){
@@ -175,7 +185,7 @@ unsigned long HashTable<Key, T>::size(){
 }
 
 template <class Key, class T>
-void HashTable<Key, T>::grow(){
+/*void HashTable<Key, T>::grow(){
 	HashRecord* oldArray = backingArray;
 	int oldArraySize = backingArraySize;
 	for (int i = 0; true; i++){
@@ -199,4 +209,4 @@ void HashTable<Key, T>::grow(){
 	}
 	delete[] oldArray;
 	
-}
+}*/
