@@ -29,12 +29,12 @@ double useCase_addAllThenGetInOrder(){
 	// the starting time, which is the clock time, in milliseconds
 	double start = getTimeInMillis();
 	//Now add all the words to the Trends data structure
-	for(unsigned int i=0; i<wordlist.size(); i++){
-		tr->increaseCount(wordlist[i],1);
+	for (unsigned int i = 0; i < wordlist.size(); i++){
+		tr->increaseCount(wordlist[i], 1);
 	}
 	//Now get the end time
 	double end = getTimeInMillis();
-	std::cout << "increaseCount time: " << (end-start)/wordlist.size() << " ms per word" << std::endl;
+	std::cout << "increaseCount time: " << (end - start) / wordlist.size() << " ms per word" << std::endl;
 
 	//Now we will print out the complete results. This could be REALLY clow, if
 	// your getNthPopular is not a little bit smart.
@@ -42,7 +42,7 @@ double useCase_addAllThenGetInOrder(){
 	std::ofstream out(outfname.c_str());
 
 	start = getTimeInMillis();
-	for(unsigned int i=0; i< tr->numEntries(); i++){
+	for (unsigned int i = 0; i < tr->numEntries(); i++){
 		std::string s = tr->getNthPopular(i);
 		out << tr->getCount(s) << ": " << s << std::endl;
 	}

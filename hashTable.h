@@ -176,30 +176,3 @@ unsigned long HashTable<Key, T>::size(){
 	return numItems;
 	
 }
-
-//template <class Key, class T>
-/*void HashTable<Key, T>::grow(){
-	HashRecord* oldArray = backingArray;
-	int oldArraySize = backingArraySize;
-	for (int i = 0; true; i++){
-		if (hashPrimes[i] == backingArraySize){
-			backingArray = new HashRecord[hashPrimes[i + 1]];
-			backingArraySize = hashPrimes[i + 1];
-			break;
-			
-		}
-		
-	}
-	
-		numItems = 0;
-	numRemoved = 0;
-	for (int i = 0; i < oldArraySize; i++){
-		if (!oldArray[i].isNull && !oldArray[i].isDel){
-			add(oldArray[i].k, oldArray[i].x);
-			
-		}
-		
-	}
-	delete[] oldArray;
-	
-}*/
