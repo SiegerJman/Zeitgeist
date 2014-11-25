@@ -33,19 +33,19 @@ public:
 	 *
 	 * Usually, "amount" will be equal to 1. See main.cpp for an example of how it is used.
 	 */
-	virtual void increaseCount(std::string s, unsigned int amount);
+	virtual void increaseCount(std::string s, unsigned int amount) = 0;
 	
 	/*
 	 * Return the count for the given string. 0 if not present, of course.
 	 */
-	virtual unsigned int getCount(std::string s);
+	virtual unsigned int getCount(std::string s) = 0;
 	
 	/*
 	 * Return the nth most popular item, based on its count. If there is a tie, return the string that
 	 * comes first according to the the < operator for strings (that is, comes first alphabetically). If n is
 	 * out of range, return ""
 	 */
-	virtual std::string getNthPopular(unsigned int n);
+	virtual std::string getNthPopular(unsigned int n) = 0;
 
 	/*
 	 * Return the total number of UNIQUE strings in the list. This will NOT be equal to the number of
@@ -53,5 +53,5 @@ public:
 	 * data structure more than once. This function is useful when looping through the results
 	 * using getNthPopular. If you do getNthPopular(numEntries()-1), it should get the least popular item
 	 */
-	virtual unsigned int numEntries();
+	virtual unsigned int numEntries() = 0;
 };

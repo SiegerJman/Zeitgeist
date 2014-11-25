@@ -12,6 +12,7 @@ public:
 	virtual unsigned int numEntries();
 	bool isSorted;
 	ourTrends() { isSorted = false; }
+
 //protected:
 	
 	std::vector<std::pair<std::string, int> > wordCountVector;
