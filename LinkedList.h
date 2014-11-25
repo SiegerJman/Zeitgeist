@@ -53,7 +53,7 @@ public:
 	// through all your nodes, deleting them one at a time
 	virtual ~LinkedList();
 
-private:
+//private:
 	//Pointer to the dummy node.
 	Node* dummyNode;
 

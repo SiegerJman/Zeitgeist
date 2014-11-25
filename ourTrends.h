@@ -1,7 +1,7 @@
 #include <vector>
 #include <string>
 #include "Trends.h"
-#include "linkedList.h"
+#include "LinkedList.h"
 #include "hashTable.h"
 
 class ourTrends : public Trends{
@@ -11,7 +11,7 @@ public:
 	virtual std::string getNthPopular(unsigned int n);
 	virtual unsigned int numEntries();
 	bool isSorted;
-	ourTrends() { isSorted = false };
+	ourTrends() { isSorted = false; }
 //protected:
 	
 	std::vector<std::pair<std::string, int> > wordCountVector;

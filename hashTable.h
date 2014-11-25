@@ -2,7 +2,7 @@
 //Author: Bo Brinkman
 //Date: 2013/07/24
 #include "USet.h"
-#include "hashPrimes.h"
+//#include "hashPrimes.h"
 /*
  * Note: Just above your template declaration when you use this class, you
  * must define method called "hash" that takes a Key as input, and returns
@@ -97,14 +97,7 @@ HashTable<Key, T>::~HashTable() {
 	
 }
 
-unsigned long hash(std::string k){
-	unsigned long m = 805306457;
-	unsigned long ret = 0;
-	for (unsigned int i = 0; i < k.size(); i++){
-		ret = (256 * ret + k[i]) % m;
-	}
-	return ret;
-}
+unsigned long hash(std::string k);
 
 
 template <class Key, class T>
@@ -184,7 +177,7 @@ unsigned long HashTable<Key, T>::size(){
 	
 }
 
-template <class Key, class T>
+//template <class Key, class T>
 /*void HashTable<Key, T>::grow(){
 	HashRecord* oldArray = backingArray;
 	int oldArraySize = backingArraySize;

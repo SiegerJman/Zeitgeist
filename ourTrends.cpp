@@ -4,14 +4,14 @@
 //This function is defined lower
 bool compareFunc(std::pair<std::string, unsigned int> i, std::pair<std::string, unsigned int> j);
 
-	void increaseCount(std::string s, unsigned int amount){
+	void ourTrends::increaseCount(std::string s, unsigned int amount){
 	unsigned int startSize = numEntries();
 	//ourTrends::increaseCount(s, amount);
 	if (startSize != numEntries()){
 		isSorted = false;
 	}
 }
-	std::string getNthPopular(unsigned int n){
+	std::string ourTrends::getNthPopular(unsigned int n){
 	if (n<=numEntries()){
 		frequencyList.find(n);
 
@@ -36,6 +36,15 @@ bool compareFunc(std::pair<std::string, unsigned int> i, std::pair<std::string, 
 	}
 		return (i.second > j.second);
 }
-	unsigned int numEntries(){
+	unsigned int ourTrends::numEntries(){
 	return wordCountVector.size();
 }
+
+	unsigned long hash(std::string k){
+		unsigned long m = 805306457;
+		unsigned long ret = 0;
+		for (unsigned int i = 0; i < k.size(); i++){
+			ret = (256 * ret + k[i]) % m;
+		}
+		return ret;
+	}
