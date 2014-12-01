@@ -21,14 +21,12 @@ std::string ourTrends::getNthPopular(unsigned int n){
 }
 unsigned int ourTrends::getCount(std::string s){
 	//Check to see if word is present
-	for (unsigned int i = 0; i < wordCountVector.size(); i++){
-		if (wordCountVector[i].first == s){
-			//If so, return the count
-			return wordCountVector[i].second;
-		}
+	if (wordTable.keyExists(s)){
+		return wordTable.find(s);
+	}else
+	{
+		return 0;
 	}
-	//otherwise, return 0
-	return 0;
 }
 bool compareFunc(std::pair<std::string, unsigned int> i, std::pair<std::string, unsigned int> j) {
 	if (i.second == j.second){
