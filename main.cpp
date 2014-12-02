@@ -50,7 +50,7 @@ double useCase_addAllThenGetInOrder(){
 	end = getTimeInMillis();
 
 	std::cout << "getNth followed by getCount, time: " << (end - start) / tr->numEntries() << " ms per entry" << std::endl;
-
+	//std::cout << (end - start);
 	delete tr;
 
 	return end - start;
