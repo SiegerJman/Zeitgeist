@@ -7,7 +7,8 @@ bool compareFunc(std::pair<std::string, unsigned int> i, std::pair<std::string, 
 void ourTrends::increaseCount(std::string s, unsigned int amount){
 	//Check to see if word is present
 	if (wordTable.keyExists(s)){
-		frequencyList.
+		int index = wordTable.find(s);
+		frequencyList[index].t++;
 	}
 
 	//If the word is not present
