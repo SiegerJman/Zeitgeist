@@ -21,7 +21,7 @@
  * Compare your 28885.txt.out to 28885_txt.out, using diff,s to see if your code is producing correct output.
  */
 double useCase_addAllThenGetInOrder(){
-	ourTrends* tr = new ourTrends(); //You will need to change this to match your own class!
+	siegerTrends* tr = new siegerTrends(); //You will need to change this to match your own class!
 
 	std::vector<std::string> wordlist = getWordList("data/28885.txt");
 

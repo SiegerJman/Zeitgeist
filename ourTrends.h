@@ -4,14 +4,14 @@
 #include "LinkedList.h"
 #include "hashTable.h"
 
-class ourTrends : public Trends{
+class siegerTrends : public Trends{
 public:
 	virtual void increaseCount(std::string s, unsigned int amount);
 	virtual unsigned int getCount(std::string s);
 	virtual std::string getNthPopular(unsigned int n);
 	virtual unsigned int numEntries();
 	bool isSorted;
-	ourTrends() { isSorted = false; }
+	siegerTrends() { isSorted = false; }
 
 //protected:
 	

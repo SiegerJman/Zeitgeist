@@ -4,7 +4,7 @@
 //This function is defined lower
 bool compareFunc(std::pair<std::string, unsigned int> i, std::pair<std::string, unsigned int> j);
 
-void ourTrends::increaseCount(std::string s, unsigned int amount){
+void siegerTrends::increaseCount(std::string s, unsigned int amount){
 	//Check to see if word is present
 	if (wordTable.keyExists(s)){
 		int index = wordTable.find(s);
@@ -18,7 +18,7 @@ void ourTrends::increaseCount(std::string s, unsigned int amount){
 	}
 }
 
-std::string ourTrends::getNthPopular(unsigned int n){
+std::string siegerTrends::getNthPopular(unsigned int n){
 	if (n <= numEntries()){
 		frequencyList.find(n);
 
@@ -27,7 +27,7 @@ std::string ourTrends::getNthPopular(unsigned int n){
 	return "";
 }
 
-unsigned int ourTrends::getCount(std::string s){
+unsigned int siegerTrends::getCount(std::string s){
 	//Check to see if word is present
 	if (wordTable.keyExists(s)){
 		return wordTable.find(s);
@@ -44,7 +44,7 @@ bool compareFunc(std::pair<std::string, unsigned int> i, std::pair<std::string, 
 	return (i.second > j.second);
 }
 
-unsigned int ourTrends::numEntries(){
+unsigned int siegerTrends::numEntries(){
 	return wordCountVector.size();
 }
 
