@@ -100,7 +100,7 @@ typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
 		return dummyNode;
 	}
 	else if (i>numItems){
-		throw std::string("Index is larger than number of items.");
+		//throw std::string("Index is larger than number of items.");
 	}
 	else{
 		Node* temp = dummyNode;

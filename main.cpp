@@ -52,7 +52,8 @@ double useCase_addAllThenGetInOrder(){
 	std::cout << "getNth followed by getCount, time: " << (end - start) / tr->numEntries() << " ms per entry" << std::endl;
 	//std::cout << (end - start);
 	delete tr;
-
+	if (end == start)
+		std::cout << "ASDFASDFSAFD";
 	return end - start;
 }
 
