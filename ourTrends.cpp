@@ -8,7 +8,7 @@ void ourTrends::increaseCount(std::string s, unsigned int amount){
 	//Check to see if word is present
 	if (wordTable.keyExists(s)){
 		int index = wordTable.find(s);
-		frequencyList[index].T++;
+		frequencyList.find(index)->data++;
 	}
 
 	//If the word is not present

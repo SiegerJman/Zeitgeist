@@ -83,7 +83,7 @@ private:
 #include <string>
 template <class Key, class T>
 HashTable<Key, T>::HashTable(){
-	backingArraySize = 805306457;
+	backingArraySize = 196613;
 	backingArray = new HashRecord[backingArraySize];
 	numItems = 0;
 	numRemoved = 0;
